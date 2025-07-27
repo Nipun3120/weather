@@ -36,14 +36,16 @@ export const Weather = () => {
   };
 
   return (
-    <div className="flex flex-col items-center select-none">
-      <h1 className="text-3xl font-bold text-white mb-6">Weather App</h1>
+    <div className="flex flex-col items-center select-none w-full px-4 sm:px-6">
+      <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">
+        Weather App
+      </h1>
 
       <ApiKeyInput onApiKeyChange={handleApiKeyChange} />
 
       {hasApiKey && (
         <>
-          <div className="bg-gray-900 border border-gray-800 p-6 rounded-lg w-[800px] shadow-xl">
+          <div className="bg-gray-900 border border-gray-800 p-4 sm:p-6 rounded-lg w-full max-w-3xl shadow-xl">
             {!weatherData ? (
               <WeatherInput
                 handleSubmit={handleSubmit}
@@ -72,7 +74,7 @@ export const Weather = () => {
             )}
           </div>
 
-          <div className="w-[800px] mt-6">
+          <div className="w-full max-w-3xl mt-4 sm:mt-6">
             <WeatherTable
               savedData={savedReports}
               onCitySelect={selectCityFromTable}

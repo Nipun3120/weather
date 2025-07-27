@@ -39,7 +39,7 @@ export const WeatherTable: React.FC<WeatherTableProps> = ({
 
   if (sortedData.length === 0) {
     return (
-      <div className="bg-gray-800 rounded-lg p-6 text-center">
+      <div className="bg-gray-800 rounded-lg p-4 sm:p-6 text-center">
         <h3 className="text-xl text-white font-medium mb-2">
           No Saved Weather Data
         </h3>
@@ -53,23 +53,27 @@ export const WeatherTable: React.FC<WeatherTableProps> = ({
   return (
     <>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-white">Saved Weather Reports</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-white">
+          Saved Weather Reports
+        </h2>
         {savedReports.length > 0 && (
           <div className="flex items-center gap-2">
             <button
               onClick={refreshSavedReports}
               className="border border-gray-900 hover:bg-gray-900 text-white p-2 rounded-md flex items-center transition-colors cursor-pointer">
-              <ArrowsClockwise size={20} className="mr-1" />
+              <ArrowsClockwise size={20} />
             </button>
             <button
               className="border border-gray-900 hover:bg-gray-900 text-white p-2 rounded-md flex items-center transition-colors cursor-pointer"
               onClick={clearStoredData}>
-              <Trash size={20} className="mr-1" />
+              <Trash size={20} />
             </button>
           </div>
         )}
       </div>
-      <div className="bg-gray-800 rounded-lg overflow-hidden">
+
+      {/* Desktop table view - hidden on mobile */}
+      <div className="hidden sm:block bg-gray-800 rounded-lg overflow-hidden">
         <table className="min-w-full">
           <thead className="bg-gray-700">
             <tr>
@@ -115,6 +119,49 @@ export const WeatherTable: React.FC<WeatherTableProps> = ({
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile card view - shown only on mobile */}
+      <div className="sm:hidden space-y-3">
+        {sortedData.map((item: SavedWeatherData) => (
+          <div
+            key={item.id}
+            className="bg-gray-800 rounded-lg p-3 border border-gray-700">
+            <div
+              className="text-blue-400 font-medium mb-1 cursor-pointer"
+              onClick={() => handleCityClick(item.city)}>
+              {item.city}, {item.country}
+            </div>
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <div>
+                <span className="text-gray-400">Temperature:</span>
+                <span className="text-gray-300 ml-1">
+                  {formatTemperature(item.temperature, isFahrenheit)}
+                </span>
+              </div>
+              <div>
+                <span className="text-gray-400">Humidity:</span>
+                <span className="text-gray-300 ml-1">{item.humidity}%</span>
+              </div>
+              <div>
+                <span className="text-gray-400">Wind Speed:</span>
+                <span className="text-gray-300 ml-1">
+                  {item.windSpeed} km/h
+                </span>
+              </div>
+              <div>
+                <span className="text-gray-400">Condition:</span>
+                <span className="text-gray-300 ml-1">{item.condition}</span>
+              </div>
+              <div className="col-span-2">
+                <span className="text-gray-400">Updated:</span>
+                <span className="text-gray-300 ml-1">
+                  {formatLocalTime(item.timestamp)}
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );

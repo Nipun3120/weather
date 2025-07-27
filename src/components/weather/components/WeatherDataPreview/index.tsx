@@ -50,45 +50,45 @@ export const WeatherDataPreview = ({
         />
       </div>
 
-      <div className="flex rounded-lg overflow-hidden">
+      <div className="flex flex-col sm:flex-row rounded-lg overflow-hidden">
         {/* Left panel with main weather info */}
-        <div className="w-[380px] bg-gradient-to-br from-cyan-300 to-blue-500 p-6 flex flex-col justify-between">
+        <div className="w-full sm:w-1/2 bg-gradient-to-br from-cyan-300 to-blue-500 p-4 sm:p-6 flex flex-col justify-between">
           <div className="text-white">
-            <h2 className="text-2xl font-bold">
+            <h2 className="text-xl sm:text-2xl font-bold">
               {locationInfo.date.split(",")[0]}
             </h2>
-            <p className="text-lg">
+            <p className="text-base sm:text-lg">
               {locationInfo.date.split(",").slice(1).join(",").trim()}
             </p>
           </div>
 
-          <div className="text-white flex items-center">
+          <div className="text-white flex items-center mt-2 sm:mt-0">
             <span className="text-xs">📍</span>
-            <span className="ml-1 text-2xl font-semibold">
+            <span className="ml-1 text-xl sm:text-2xl font-semibold">
               {locationInfo.city}, {locationInfo.country}
             </span>
           </div>
 
-          <div className="text-white flex flex-col items-center">
+          <div className="text-white flex flex-col items-center mt-4 sm:mt-0">
             {getWeatherIcon(weatherCondition)}
             <div className="mt-2">
-              <span className="text-6xl font-bold">
+              <span className="text-5xl sm:text-6xl font-bold">
                 {formatTemperature(temperature, isFahrenheit())}
               </span>
             </div>
             <div className="mt-1">
-              <span className="text-xl">{weatherCondition}</span>
+              <span className="text-lg sm:text-xl">{weatherCondition}</span>
             </div>
           </div>
         </div>
 
         {/* Right panel with weather details */}
-        <div className="w-[380px] bg-gray-800 p-6 flex flex-col justify-between">
-          <div className="text-white grid grid-cols-2 gap-4">
+        <div className="w-full sm:w-1/2 bg-gray-800 p-4 sm:p-6 flex flex-col justify-between">
+          <div className="text-white grid grid-cols-2 gap-3 sm:gap-4">
             {WEATHER_DETAIL_FIELDS.map((field) => (
               <div key={field.id}>
-                <h3 className="text-lg uppercase">{field.label}</h3>
-                <div className="text-2xl">
+                <h3 className="text-sm sm:text-lg uppercase">{field.label}</h3>
+                <div className="text-lg sm:text-2xl">
                   {field.getValue(weatherData, windDirection)}
                 </div>
               </div>
@@ -101,7 +101,7 @@ export const WeatherDataPreview = ({
       <div className="flex justify-between items-center space-x-3">
         <button
           onClick={onChangeLocation}
-          className="w-full bg-gradient-to-r from-cyan-300 to-blue-500 text-white py-3 rounded-lg hover:opacity-90 transition-opacity cursor-pointer">
+          className="w-full bg-gradient-to-r from-cyan-300 to-blue-500 text-white py-2 sm:py-3 rounded-lg hover:opacity-90 transition-opacity cursor-pointer">
           📍 Change location
         </button>
 
