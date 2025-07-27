@@ -12,7 +12,7 @@ interface WeatherTableProps {
   temperatureUnit?: TemperatureUnit;
   refreshSavedReports: () => void;
   savedReports: SavedWeatherData[];
-  setSavedReports: (savedReports: SavedWeatherData[] | null) => void;
+  setSavedReports: React.Dispatch<React.SetStateAction<SavedWeatherData[]>>;
 }
 
 export const WeatherTable: React.FC<WeatherTableProps> = ({

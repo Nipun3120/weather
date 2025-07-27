@@ -21,7 +21,7 @@ export const useWeatherTable = ({
   data: SavedWeatherData[];
   temperatureUnit: TemperatureUnit;
   onCitySelect: (cityName: string) => void;
-  setSavedReports: (savedReports: SavedWeatherData[] | null) => void;
+  setSavedReports: React.Dispatch<React.SetStateAction<SavedWeatherData[]>>;
 }) => {
   const [sortConfig, setSortConfig] = useState<SortConfig | null>(null);
 
@@ -85,7 +85,7 @@ export const useWeatherTable = ({
   const clearStoredData = useCallback(() => {
     sessionStorage.removeItem(STORAGE_KEY);
     setSavedReports([]);
-  }, []);
+  }, [setSavedReports]);
 
   return {
     sortedData,

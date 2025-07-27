@@ -141,7 +141,7 @@ export const WEATHER_DETAIL_FIELDS: WeatherDetailConfig[] = [
   {
     id: WeatherDetailField.WIND_DIRECTION,
     label: "Wind Direction",
-    getValue: (data, windDirection) => (
+    getValue: (_, windDirection) => (
       <div className="flex items-center">
         {windDirection && WIND_DIRECTION_ICONS[windDirection]}
         <span className="ml-2 text-2xl">{windDirection}</span>
