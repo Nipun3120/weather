@@ -58,7 +58,3 @@ npm run preview
 - Toggle between Celsius and Fahrenheit
 - Save favorite locations for quick access
 - Responsive design for desktop and mobile devices
-
-## License
-
-MIT
